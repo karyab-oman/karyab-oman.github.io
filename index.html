@@ -70,12 +70,14 @@
   .sub{
     position:relative;z-index:2;
     font-size:15px;color:#cfd9de;max-width:480px;margin:0 auto 6px;line-height:2;font-weight:500;
+    text-wrap:balance;
   }
   .tagline{
     position:relative;z-index:2;
     font-size:14px;color:var(--gold-soft);max-width:460px;margin:14px auto 0;
     line-height:1.9;font-weight:600;font-style:normal;
     border-top:1px dashed rgba(201,162,39,.35);padding-top:14px;
+    text-wrap:balance;
   }
   .compass{
     width:60px;height:60px;margin:26px auto 0;position:relative;z-index:2;opacity:.85;
@@ -139,7 +141,14 @@
   .field.invalid .err{display:block;}
 
   .success{text-align:center;padding:36px 14px 14px;}
-  .success-badge{width:84px;height:84px;margin:0 auto 20px;display:block;}
+  .badge-glow{
+    position:relative;width:84px;height:84px;margin:0 auto 20px;
+  }
+  .badge-glow::before{
+    content:'';position:absolute;inset:-14px;border-radius:50%;
+    background:radial-gradient(circle, rgba(201,162,39,.35) 0%, transparent 70%);
+  }
+  .success-badge{width:84px;height:84px;display:block;position:relative;z-index:1;}
   .success h2{font-size:21px;margin:0 0 10px;color:var(--navy);font-weight:800;}
   .success p{color:var(--muted);font-size:14px;line-height:1.9;margin:0 0 6px;}
   .code-wrap{margin:22px 0;}
@@ -152,10 +161,28 @@
     border:1px solid rgba(201,162,39,.5);padding:11px 26px;border-radius:11px;
     font-weight:800;letter-spacing:1.5px;color:var(--gold-soft);font-size:16px;
   }
+  .next-steps{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    margin:26px auto 4px;max-width:440px;
+  }
+  .next-step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
+  .ns-icon{
+    width:42px;height:42px;border-radius:50%;background:var(--paper-dim);
+    border:1px solid #ddd2ae;display:flex;align-items:center;justify-content:center;
+    font-size:18px;
+  }
+  .next-step span{font-size:11.5px;font-weight:700;color:#3a4a53;line-height:1.5;}
+  .ns-line{
+    flex:0 0 24px;height:1px;margin-top:-24px;
+    background-image:repeating-linear-gradient(90deg, #c9a227 0 4px, transparent 4px 8px);
+    opacity:.6;
+  }
+  @media (max-width:420px){.ns-line{flex:0 0 12px;}}
   .promise{
-    max-width:400px;margin:22px auto 0;padding-top:18px;
+    max-width:420px;margin:24px auto 0;padding-top:18px;
     border-top:1px dashed #ddd2ae;
     color:#3a4a53;font-weight:600;font-size:13.5px;line-height:2.1;
+    text-wrap:balance;
   }
 
   /* ---------- ADMIN ---------- */
@@ -315,13 +342,15 @@
 
     <div id="successView" style="display:none;">
       <div class="success">
-        <svg class="success-badge" viewBox="0 0 84 84" fill="none">
-          <circle cx="42" cy="42" r="40" stroke="#c9a227" stroke-width="1.4" opacity="0.55"/>
-          <circle cx="42" cy="42" r="32" fill="#123044"/>
-          <circle cx="42" cy="42" r="32" stroke="#e2c66b" stroke-width="1.6"/>
-          <path d="M28 43 L37 52 L57 30" stroke="#e2c66b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <h2>ثبت‌نام شما با موفقیت ثبت شد</h2>
+        <div class="badge-glow">
+          <svg class="success-badge" viewBox="0 0 84 84" fill="none">
+            <circle cx="42" cy="42" r="40" stroke="#c9a227" stroke-width="1.4" opacity="0.55"/>
+            <circle cx="42" cy="42" r="32" fill="#123044"/>
+            <circle cx="42" cy="42" r="32" stroke="#e2c66b" stroke-width="1.6"/>
+            <path d="M28 43 L37 52 L57 30" stroke="#e2c66b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <h2>ثبت‌نام شما با موفقیت انجام شد</h2>
         <p>اطلاعات <b id="doneName"></b> با دقت دریافت و ذخیره شد.</p>
 
         <div class="code-wrap">
@@ -329,7 +358,26 @@
           <div class="code" id="doneCode">—</div>
         </div>
 
-        <p class="promise">منتظر تماس و ارتباط ما باشید. ما در تلاشیم مرتبط‌ترین فرصت‌های شغلی را در سریع‌ترین زمان ممکن برایتان بیابیم.</p>
+        <div class="next-steps">
+          <div class="next-step">
+            <div class="ns-icon">📋</div>
+            <span>بررسی مدارک</span>
+          </div>
+          <div class="ns-line"></div>
+          <div class="next-step">
+            <div class="ns-icon">📞</div>
+            <span>تماس مستقیم</span>
+          </div>
+          <div class="ns-line"></div>
+          <div class="next-step">
+            <div class="ns-icon">✈️</div>
+            <span>شروع فرصت شغلی</span>
+          </div>
+        </div>
+
+        <p class="promise">منتظر تماس و ارتباط ما باشید. ما در تلاشیم تا در سریع‌ترین زمان ممکن مرتبط‌ترین فرصت‌های شغلی را برای شما بیابیم.</p>
+      </div>
+    </div>
       </div>
     </div>
   </div>
