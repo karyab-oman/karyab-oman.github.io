@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ثبت‌نام کارجویان عمان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0e2436;
+    --navy-2:#153650;
+    --gold:#c9a227;
+    --gold-soft:#e2c66b;
+    --paper:#faf6ec;
+    --paper-dim:#f0e9d6;
+    --teal:#1f6f78;
+    --ink:#1c2530;
+    --muted:#5b6b74;
+    --danger:#b0472f;
+    --ok:#2f7a5c;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Vazirmatn', sans-serif;
+    background:var(--navy);
+    color:var(--paper);
+    min-height:100vh;
+    direction:rtl;
+    text-align:right;
+  }
+  .wrap{max-width:740px;margin:0 auto;padding:0 20px 80px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:64px 20px 46px;
+    text-align:center;
+    background:
+      radial-gradient(900px 450px at 12% -20%, #1b435f 0%, transparent 60%),
+      radial-gradient(700px 400px at 105% 0%, #123044 0%, transparent 55%),
+      var(--navy);
+    border-bottom:1px solid rgba(201,162,39,.25);
+  }
+  .geo-border{
+    position:absolute;top:0;left:0;right:0;height:10px;
+    background-image:repeating-linear-gradient(135deg, var(--gold) 0 3px, transparent 3px 16px);
+    opacity:.55;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12.5px;letter-spacing:.5px;color:var(--gold-soft);
+    background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.4);
+    padding:7px 16px;border-radius:999px;margin-bottom:24px;position:relative;z-index:2;
+    font-weight:700;
+  }
+  h1{
+    position:relative;z-index:2;
+    font-size:clamp(28px,5.5vw,42px);
+    font-weight:900;
+    margin:0 0 14px;
+    color:var(--paper);
+    line-height:1.4;
+  }
+  h1 em{font-style:normal;color:var(--gold);}
+  .sub{
+    position:relative;z-index:2;
+    font-size:15px;color:#cfd9de;max-width:480px;margin:0 auto 6px;line-height:2;font-weight:500;
+  }
+  .tagline{
+    position:relative;z-index:2;
+    font-size:14px;color:var(--gold-soft);max-width:460px;margin:14px auto 0;
+    line-height:1.9;font-weight:600;font-style:normal;
+    border-top:1px dashed rgba(201,162,39,.35);padding-top:14px;
+  }
+  .compass{
+    width:60px;height:60px;margin:26px auto 0;position:relative;z-index:2;opacity:.85;
+  }
+
+  /* ---------- CARD ---------- */
+  .card{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:var(--radius);
+    padding:32px 26px 26px;
+    box-shadow:0 24px 55px rgba(0,0,0,.4);
+    margin-top:-26px;
+    position:relative;
+    z-index:3;
+  }
+  .card h2{margin:0 0 4px;font-size:19px;font-weight:800;color:var(--navy);}
+  .card .hint{margin:0 0 24px;font-size:13.5px;color:var(--muted);font-weight:500;}
+  label{display:block;font-size:13.5px;font-weight:700;color:#2c3a44;margin-bottom:7px;}
+  .req{color:var(--danger);}
+  .field{margin-bottom:17px;}
+  input[type=text],input[type=number],textarea{
+    width:100%;padding:12px 14px;border-radius:11px;border:1.5px solid #ddd2ae;
+    background:#fffdf7;font-family:inherit;font-size:14.5px;color:var(--ink);
+    outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  input:focus,textarea:focus{
+    border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,.22);
+  }
+  textarea{resize:vertical;min-height:80px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:520px){.row2{grid-template-columns:1fr;}}
+
+  .choice-group{display:flex;flex-direction:column;gap:9px;}
+  .choice{
+    display:flex;align-items:center;gap:10px;
+    border:1.5px solid #ddd2ae;border-radius:11px;padding:11px 14px;
+    cursor:pointer;background:#fffdf7;transition:border-color .15s, background .15s;
+  }
+  .choice:hover{border-color:var(--gold-soft);}
+  .choice input{width:auto;accent-color:var(--teal);}
+  .choice.checked{border-color:var(--gold);background:#fbf3dc;}
+  .choice span{font-size:14px;font-weight:600;color:var(--ink);}
+
+  .choice-row{display:flex;gap:12px;}
+  .choice-row .choice{flex:1;justify-content:center;}
+
+  button.submit{
+    width:100%;margin-top:8px;padding:14px 18px;border:none;border-radius:11px;
+    background:var(--navy);color:var(--gold-soft);font-family:inherit;font-weight:800;font-size:15.5px;
+    cursor:pointer;transition:transform .12s, background .15s;
+  }
+  button.submit:hover{background:var(--navy-2);}
+  button.submit:active{transform:scale(.98);}
+  button.submit:disabled{opacity:.6;cursor:not-allowed;}
+
+  .err{color:var(--danger);font-size:12.5px;margin-top:5px;display:none;font-weight:600;}
+  .field.invalid input,.field.invalid textarea,.field.invalid .choice-group,.field.invalid .choice-row{
+    outline:1.5px solid var(--danger);border-radius:11px;
+  }
+  .field.invalid .err{display:block;}
+
+  .success{text-align:center;padding:36px 14px 14px;}
+  .success-badge{width:84px;height:84px;margin:0 auto 20px;display:block;}
+  .success h2{font-size:21px;margin:0 0 10px;color:var(--navy);font-weight:800;}
+  .success p{color:var(--muted);font-size:14px;line-height:1.9;margin:0 0 6px;}
+  .code-wrap{margin:22px 0;}
+  .code-label{
+    display:block;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:8px;
+    letter-spacing:.3px;
+  }
+  .code{
+    display:inline-block;background:var(--navy);
+    border:1px solid rgba(201,162,39,.5);padding:11px 26px;border-radius:11px;
+    font-weight:800;letter-spacing:1.5px;color:var(--gold-soft);font-size:16px;
+  }
+  .promise{
+    max-width:400px;margin:22px auto 0;padding-top:18px;
+    border-top:1px dashed #ddd2ae;
+    color:#3a4a53;font-weight:600;font-size:13.5px;line-height:2.1;
+  }
+
+  /* ---------- ADMIN ---------- */
+  .admin-fab{
+    position:fixed;bottom:20px;left:20px;
+    width:46px;height:46px;border-radius:50%;
+    background:var(--navy-2);border:1.5px solid rgba(201,162,39,.5);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:50;
+  }
+  .admin-fab svg{width:20px;height:20px;stroke:var(--gold-soft);}
+
+  .overlay{
+    position:fixed;inset:0;background:rgba(6,14,20,.75);backdrop-filter:blur(2px);
+    display:none;align-items:center;justify-content:center;z-index:100;padding:16px;
+  }
+  .overlay.show{display:flex;}
+  .modal{
+    background:var(--paper);color:var(--ink);border-radius:16px;
+    width:100%;max-width:430px;padding:24px;max-height:88vh;overflow-y:auto;
+  }
+  .modal h3{margin:0 0 4px;font-size:17px;font-weight:800;color:var(--navy);}
+  .modal .hint{color:var(--muted);font-size:13px;margin:0 0 16px;}
+  .modal input{margin-bottom:10px;}
+  .modal-actions{display:flex;gap:10px;margin-top:6px;}
+  .btn-ghost{
+    flex:1;padding:11px;border-radius:10px;border:1.5px solid #ddd2ae;background:transparent;
+    font-family:inherit;font-weight:700;color:var(--muted);cursor:pointer;font-size:13.5px;
+  }
+  .btn-solid{
+    flex:1;padding:11px;border-radius:10px;border:none;background:var(--navy);
+    color:var(--gold-soft);font-family:inherit;font-weight:700;cursor:pointer;font-size:13.5px;
+  }
+
+  .admin-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;flex-wrap:wrap;}
+  .admin-top h3{margin:0;font-size:17px;color:var(--navy);}
+  .count-badge{
+    background:var(--gold);color:var(--navy);font-weight:800;font-size:12px;
+    padding:3px 10px;border-radius:999px;
+  }
+  .admin-actions{display:flex;gap:8px;margin-bottom:14px;}
+  .admin-actions button{
+    flex:1;padding:9px;border-radius:9px;border:1.5px solid #ddd2ae;background:#fffdf7;
+    font-family:inherit;font-weight:700;font-size:12.5px;color:#2c3a44;cursor:pointer;
+  }
+  .reg-item{
+    border:1px solid #e6dbb8;border-radius:12px;padding:12px 14px;margin-bottom:10px;
+    background:#fffdf7;position:relative;
+  }
+  .reg-item .name{font-weight:800;font-size:14.5px;margin-bottom:4px;color:var(--navy);}
+  .reg-item .meta{font-size:12.5px;color:var(--muted);line-height:1.9;}
+  .reg-item .meta b{color:#2c3a44;}
+  .reg-item .del{
+    position:absolute;left:10px;top:10px;background:none;border:none;
+    color:var(--danger);cursor:pointer;font-size:12px;font-weight:700;
+  }
+  .empty{text-align:center;color:#95a0a7;font-size:13.5px;padding:30px 0;}
+  .loading{text-align:center;color:#95a0a7;font-size:13px;padding:20px 0;}
+
+  .footer-note{
+    text-align:center;font-size:12px;color:#9fb0b8;margin-top:26px;line-height:1.9;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="geo-border"></div>
+  <div class="eyebrow">🌍 فرصت‌های شغلی معتبر در عمان</div>
+  <h1>ثبت‌نام <em>کارجویان عمان</em></h1>
+  <p class="sub">فرم زیر را با دقت پر کنید و کد پیگیری پایان ثبت‌نام را در جایی یادداشت کنید.</p>
+  <p class="tagline">« یک فرصت مناسب، از یک معرفی دقیق آغاز می‌شود »</p>
+
+  <svg class="compass" viewBox="0 0 60 60" fill="none">
+    <circle cx="30" cy="30" r="26" stroke="#e2c66b" stroke-width="1.4" opacity="0.8"/>
+    <circle cx="30" cy="30" r="19" stroke="#e2c66b" stroke-width="1" opacity="0.5"/>
+    <polygon points="30,12 34,30 30,48 26,30" fill="#c9a227" opacity="0.9"/>
+    <circle cx="30" cy="30" r="2.5" fill="#faf6ec"/>
+  </svg>
+</div>
+
+<div class="wrap">
+  <div class="card" id="card">
+    <div id="formView">
+      <h2>مشخصات کارجو</h2>
+      <p class="hint">فیلدهای ستاره‌دار (<span class="req">*</span>) اجباری هستند.</p>
+
+      <form id="regForm" novalidate>
+        <div class="field" data-f="fullName">
+          <label>نام و نام‌خانوادگی <span class="req">*</span></label>
+          <input type="text" id="fullName" placeholder="مثلاً: مریم احمدی">
+          <div class="err">این فیلد را خالی نگذارید.</div>
+        </div>
+
+        <div class="row2">
+          <div class="field" data-f="age">
+            <label>سن <span class="req">*</span></label>
+            <input type="number" id="age" placeholder="مثلاً: ۲۸" min="16" max="70">
+            <div class="err">سن معتبر وارد کنید.</div>
+          </div>
+          <div class="field" data-f="location">
+            <label>محل سکونت <span class="req">*</span></label>
+            <input type="text" id="location" placeholder="شهر / کشور">
+            <div class="err">محل سکونت را وارد کنید.</div>
+          </div>
+        </div>
+
+        <div class="field" data-f="education">
+          <label>رشته تحصیلی و آخرین مدرک <span class="req">*</span></label>
+          <input type="text" id="education" placeholder="مثلاً: مترجمی زبان عربی - کارشناسی">
+          <div class="err">رشته و مدرک تحصیلی را وارد کنید.</div>
+        </div>
+
+        <div class="field" data-f="specialty">
+          <label>در چه زمینه‌ای تخصص دارید؟ <span class="req">*</span></label>
+          <textarea id="specialty" placeholder="توضیح دهید در چه حوزه یا مهارتی تجربه یا تخصص دارید"></textarea>
+          <div class="err">این فیلد را خالی نگذارید.</div>
+        </div>
+
+        <div class="field" data-f="workType">
+          <label>نوع همکاری مدنظر <span class="req">*</span></label>
+          <div class="choice-group" id="workTypeGroup">
+            <label class="choice"><input type="radio" name="workType" value="آنلاین"><span>دنبال کار آنلاین هستم</span></label>
+            <label class="choice"><input type="radio" name="workType" value="حضوری"><span>دنبال کار حضوری هستم</span></label>
+            <label class="choice"><input type="radio" name="workType" value="هردو"><span>برای هر دو کار آنلاین یا حضوری آماده هستم</span></label>
+          </div>
+          <div class="err">یکی از گزینه‌ها را انتخاب کنید.</div>
+        </div>
+
+        <div class="field" data-f="passport">
+          <label>پاسپورت آماده دارید؟ <span class="req">*</span></label>
+          <div class="choice-row" id="passportGroup">
+            <label class="choice"><input type="radio" name="passport" value="بله"><span>بله</span></label>
+            <label class="choice"><input type="radio" name="passport" value="خیر"><span>خیر</span></label>
+          </div>
+          <div class="err">یکی از گزینه‌ها را انتخاب کنید.</div>
+        </div>
+
+        <div class="row2">
+          <div class="field" data-f="phone">
+            <label>شماره تماس (واتساپ) <span class="req">*</span></label>
+            <input type="text" id="phone" placeholder="مثلاً: ۰۰۹۸۹۱۲۱۲۳۴۵۶۷">
+            <div class="err">شماره تماس معتبر وارد کنید.</div>
+          </div>
+          <div class="field" data-f="telegram">
+            <label>آیدی تلگرام <span class="req">*</span></label>
+            <input type="text" id="telegram" placeholder="مثلاً: @username">
+            <div class="err">آیدی تلگرام را وارد کنید.</div>
+          </div>
+        </div>
+
+        <div id="formMsg" style="display:none;padding:11px 14px;border-radius:10px;font-size:13.5px;font-weight:700;margin-bottom:14px;"></div>
+
+        <button type="submit" class="submit" id="submitBtn">ثبت‌نام</button>
+      </form>
+    </div>
+
+    <div id="successView" style="display:none;">
+      <div class="success">
+        <svg class="success-badge" viewBox="0 0 84 84" fill="none">
+          <circle cx="42" cy="42" r="40" stroke="#c9a227" stroke-width="1.4" opacity="0.55"/>
+          <circle cx="42" cy="42" r="32" fill="#123044"/>
+          <circle cx="42" cy="42" r="32" stroke="#e2c66b" stroke-width="1.6"/>
+          <path d="M28 43 L37 52 L57 30" stroke="#e2c66b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <h2>ثبت‌نام شما با موفقیت ثبت شد</h2>
+        <p>اطلاعات <b id="doneName"></b> با دقت دریافت و ذخیره شد.</p>
+
+        <div class="code-wrap">
+          <span class="code-label">کد پیگیری شما</span>
+          <div class="code" id="doneCode">—</div>
+        </div>
+
+        <p class="promise">منتظر تماس و ارتباط ما باشید. ما در تلاشیم مرتبط‌ترین فرصت‌های شغلی را در سریع‌ترین زمان ممکن برایتان بیابیم.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">اطلاعات شما محرمانه ذخیره می‌شود و فقط توسط مسئول بررسی قابل مشاهده است.</p>
+</div>
+
+<script>
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxEyrZ2f8mNJO3AzUkTZ4te75hd1gKfWJ720nqvdwhVCvwYzwav4nP1AfvHyyQ8Gz1CFQ/exec";
+
+// ---- form ----
+const form = document.getElementById('regForm');
+const submitBtn = document.getElementById('submitBtn');
+
+document.querySelectorAll('.choice input[type=radio]').forEach(inp => {
+  inp.addEventListener('change', () => {
+    const group = inp.closest('.choice-group, .choice-row');
+    group.querySelectorAll('.choice').forEach(c => c.classList.remove('checked'));
+    inp.closest('.choice').classList.add('checked');
+  });
+});
+
+function setError(id, show){
+  const field = document.querySelector(`[data-f="${id}"]`);
+  if(field) field.classList.toggle('invalid', show);
+}
+
+function toEnglishDigits(str){
+  const fa = '۰۱۲۳۴۵۶۷۸۹', ar = '٠١٢٣٤٥٦٧٨٩';
+  return str.replace(/[۰-۹]/g, d => fa.indexOf(d))
+             .replace(/[٠-٩]/g, d => ar.indexOf(d));
+}
+
+function showMsg(text, type){
+  const el = document.getElementById('formMsg');
+  el.textContent = text;
+  el.style.display = 'block';
+  if(type === 'error'){
+    el.style.background = '#fbe4dd';
+    el.style.color = '#8a2f1c';
+    el.style.border = '1px solid #e3b6a4';
+  }else{
+    el.style.background = '#e2f0e8';
+    el.style.color = '#1f5138';
+    el.style.border = '1px solid #b6d9c4';
+  }
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  document.getElementById('formMsg').style.display = 'none';
+  const fullName = document.getElementById('fullName').value.trim();
+  let age = document.getElementById('age').value.trim();
+  age = toEnglishDigits(age);
+  const location = document.getElementById('location').value.trim();
+  let phone = document.getElementById('phone').value.trim();
+  phone = toEnglishDigits(phone).replace(/[\s\-()]/g,'').replace(/^\+/,'');
+  const telegram = document.getElementById('telegram').value.trim();
+  const education = document.getElementById('education').value.trim();
+  const specialty = document.getElementById('specialty').value.trim();
+  const workType = document.querySelector('input[name="workType"]:checked');
+  const passport = document.querySelector('input[name="passport"]:checked');
+
+  let valid = true;
+  const checks = {
+    fullName: fullName.length > 1,
+    age: /^\d{1,2}$/.test(age) && Number(age) >= 16 && Number(age) <= 75,
+    location: location.length > 0,
+    phone: /^\d{8,14}$/.test(phone),
+    telegram: telegram.length > 1,
+    education: education.length > 0,
+    specialty: specialty.length > 0,
+    workType: !!workType,
+    passport: !!passport
+  };
+  for(const k in checks){
+    setError(k, !checks[k]);
+    if(!checks[k]) valid = false;
+  }
+  if(!valid){
+    const firstInvalid = document.querySelector('.field.invalid');
+    if(firstInvalid) firstInvalid.scrollIntoView({behavior:'smooth', block:'center'});
+    showMsg('لطفاً فیلدهای مشخص‌شده با رنگ قرمز را کامل یا اصلاح کنید.', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'در حال ثبت...';
+
+  const code = 'OMN-' + Math.random().toString(36).slice(2,7).toUpperCase();
+  const entry = {
+    fullName, age, location, phone, telegram, education, specialty,
+    workType: workType.value, passport: passport.value, code
+  };
+
+  try{
+    const body = new URLSearchParams(entry);
+    // Google Apps Script doesn't return CORS headers, so we use no-cors:
+    // the request still reaches the sheet, we just can't read the response.
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: body
+    });
+
+    document.getElementById('doneName').textContent = fullName;
+    document.getElementById('doneCode').textContent = code;
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('successView').style.display = 'block';
+  }catch(err){
+    showMsg('متأسفانه ثبت‌نام انجام نشد. لطفاً اتصال اینترنت را بررسی و دوباره تلاش کنید. (' + err.message + ')', 'error');
+    console.error(err);
+  }finally{
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'ثبت‌نام';
+  }
+});
+</script>
+</body>
+</html>
