@@ -269,8 +269,15 @@
   .loading{text-align:center;color:#95a0a7;font-size:13px;padding:20px 0;}
 
   .footer-note{
-    text-align:center;font-size:12px;color:#9fb0b8;margin-top:26px;line-height:1.9;
+    text-align:center;font-size:12px;color:#9fb0b8;margin-top:26px;line-height:2.1;
   }
+  .reviewer-link{
+    display:inline-flex;align-items:center;gap:4px;
+    color:var(--gold-soft);font-weight:800;font-style:italic;
+    text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;
+  }
+  .reviewer-link:hover{color:var(--gold);}
+  .tg-mini{width:13px;height:13px;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -493,7 +500,14 @@
     </div>
   </div>
 
-  <p class="footer-note">اطلاعات شما محرمانه ذخیره می‌شود و فقط توسط مسئول بررسی قابل مشاهده است.</p>
+  <p class="footer-note">
+    اطلاعات شما محرمانه ذخیره می‌شود و فقط توسط
+    <a href="https://t.me/teacher_180" target="_blank" rel="noopener" class="reviewer-link">
+      مسئول بررسی (امین اسدی)
+      <svg viewBox="0 0 240 240" class="tg-mini"><circle cx="120" cy="120" r="120" fill="#29a9eb"/><path fill="#fff" d="M53 118l125-48c6-2 11 2 9 10l-21 100c-2 8-7 10-14 6l-38-28-18 17c-2 2-4 3-7 3l3-38 68-62c3-3-1-4-4-2l-84 53-36-11c-8-2-8-8 2-10z"/></svg>
+    </a>
+    قابل مشاهده است.
+  </p>
 </div>
 
 <script>
