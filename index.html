@@ -70,14 +70,12 @@
   .sub{
     position:relative;z-index:2;
     font-size:15px;color:#cfd9de;max-width:480px;margin:0 auto 6px;line-height:2;font-weight:500;
-    text-wrap:balance;
   }
   .tagline{
     position:relative;z-index:2;
     font-size:14px;color:var(--gold-soft);max-width:460px;margin:14px auto 0;
     line-height:1.9;font-weight:600;font-style:normal;
     border-top:1px dashed rgba(201,162,39,.35);padding-top:14px;
-    text-wrap:balance;
   }
   .compass{
     width:60px;height:60px;margin:26px auto 0;position:relative;z-index:2;opacity:.85;
@@ -110,6 +108,24 @@
   textarea{resize:vertical;min-height:80px;}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   @media (max-width:520px){.row2{grid-template-columns:1fr;}}
+
+  .field-hint{margin:-3px 0 10px;font-size:12px;color:var(--muted);font-weight:500;}
+  .lang-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  }
+  @media (max-width:480px){.lang-grid{grid-template-columns:1fr;}}
+  .lang-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    border:1.5px solid #ddd2ae;border-radius:11px;padding:9px 12px;background:#fffdf7;
+  }
+  .lang-name{font-size:13.5px;font-weight:700;color:#2c3a44;}
+  .lang-row select{
+    width:auto;flex-shrink:0;padding:6px 10px;border-radius:8px;border:1.5px solid #ddd2ae;
+    background:#fffdf7;font-family:inherit;font-size:12.5px;color:var(--ink);cursor:pointer;
+    outline:none;
+  }
+  .lang-row select:focus{border-color:var(--gold);}
+  .lang-row.filled{border-color:var(--gold-soft);background:#fbf3dc;}
 
   .choice-group{display:flex;flex-direction:column;gap:9px;}
   .choice{
@@ -162,27 +178,30 @@
     font-weight:800;letter-spacing:1.5px;color:var(--gold-soft);font-size:16px;
   }
   .next-steps{
-    display:flex;align-items:center;justify-content:center;gap:6px;
-    margin:26px auto 4px;max-width:440px;
+    display:flex;align-items:flex-start;justify-content:center;
+    margin:28px auto 0;max-width:460px;
   }
-  .next-step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
+  .next-step{display:flex;flex-direction:column;align-items:center;gap:8px;width:92px;}
   .ns-icon{
-    width:42px;height:42px;border-radius:50%;background:var(--paper-dim);
-    border:1px solid #ddd2ae;display:flex;align-items:center;justify-content:center;
-    font-size:18px;
+    width:42px;height:42px;border-radius:50%;background:var(--navy);
+    border:1px solid rgba(201,162,39,.45);display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
   }
-  .next-step span{font-size:11.5px;font-weight:700;color:#3a4a53;line-height:1.5;}
+  .ns-icon svg{width:19px;height:19px;stroke:var(--gold-soft);fill:none;stroke-width:1.7;}
+  .next-step span{font-size:11.5px;font-weight:700;color:#3a4a53;line-height:1.5;text-align:center;}
   .ns-line{
-    flex:0 0 24px;height:1px;margin-top:-24px;
+    flex:0 0 26px;height:1px;margin-top:21px;
     background-image:repeating-linear-gradient(90deg, #c9a227 0 4px, transparent 4px 8px);
-    opacity:.6;
+    opacity:.65;
   }
-  @media (max-width:420px){.ns-line{flex:0 0 12px;}}
+  @media (max-width:420px){.next-step{width:74px;} .ns-line{flex:0 0 12px;}}
+  .thin-divider{
+    width:60px;height:1px;background:linear-gradient(90deg, transparent, #c9a227, transparent);
+    margin:28px auto 0;opacity:.7;
+  }
   .promise{
-    max-width:420px;margin:24px auto 0;padding-top:18px;
-    border-top:1px dashed #ddd2ae;
+    max-width:420px;margin:16px auto 0;
     color:#3a4a53;font-weight:600;font-size:13.5px;line-height:2.1;
-    text-wrap:balance;
   }
 
   /* ---------- ADMIN ---------- */
@@ -302,6 +321,84 @@
           <div class="err">این فیلد را خالی نگذارید.</div>
         </div>
 
+        <div class="field" data-f="languages">
+          <label>زبان‌هایی که بلدید و سطح تسلط <span class="req">*</span></label>
+          <p class="field-hint">فقط زبان‌هایی که بلدید را مشخص کنید، بقیه را «نمی‌دانم» بگذارید.</p>
+          <div class="lang-grid">
+            <div class="lang-row">
+              <span class="lang-name">فارسی</span>
+              <select data-lang="فارسی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">انگلیسی</span>
+              <select data-lang="انگلیسی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">عربی</span>
+              <select data-lang="عربی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">ترکی</span>
+              <select data-lang="ترکی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">هندی</span>
+              <select data-lang="هندی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">آلمانی</span>
+              <select data-lang="آلمانی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+            <div class="lang-row">
+              <span class="lang-name">روسی</span>
+              <select data-lang="روسی">
+                <option value="">نمی‌دانم</option>
+                <option value="مبتدی">مبتدی</option>
+                <option value="متوسط">متوسط</option>
+                <option value="پیشرفته">پیشرفته</option>
+                <option value="زبان مادری">زبان مادری</option>
+              </select>
+            </div>
+          </div>
+          <div class="err">لطفاً حداقل سطح یک زبان را مشخص کنید.</div>
+        </div>
+
         <div class="field" data-f="workType">
           <label>نوع همکاری مدنظر <span class="req">*</span></label>
           <div class="choice-group" id="workTypeGroup">
@@ -360,22 +457,29 @@
 
         <div class="next-steps">
           <div class="next-step">
-            <div class="ns-icon">📋</div>
+            <div class="ns-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6a1 1 0 011 1v1.2h2.2A1.8 1.8 0 0120 7v13a1.8 1.8 0 01-1.8 1.8H5.8A1.8 1.8 0 014 20V7a1.8 1.8 0 011.8-1.8H8V4a1 1 0 011-1z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
+            </div>
             <span>بررسی مدارک</span>
           </div>
           <div class="ns-line"></div>
           <div class="next-step">
-            <div class="ns-icon">📞</div>
+            <div class="ns-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16.6v2.7a1.8 1.8 0 01-2 1.8 17.8 17.8 0 01-7.8-2.8 17.5 17.5 0 01-5.4-5.4A17.8 17.8 0 013 5.1 1.8 1.8 0 014.8 3h2.7a1.8 1.8 0 011.8 1.5c.11.85.32 1.68.62 2.48a1.8 1.8 0 01-.4 1.9L8.6 9.8a14.4 14.4 0 005.4 5.4l.92-.92a1.8 1.8 0 011.9-.4c.8.3 1.63.51 2.48.62A1.8 1.8 0 0121 16.6z"/></svg>
+            </div>
             <span>تماس مستقیم</span>
           </div>
           <div class="ns-line"></div>
           <div class="next-step">
-            <div class="ns-icon">✈️</div>
+            <div class="ns-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L10 14"/><path d="M21 3l-6.5 18-4-8-8-4z"/></svg>
+            </div>
             <span>شروع فرصت شغلی</span>
           </div>
         </div>
 
-        <p class="promise">منتظر تماس و ارتباط ما باشید. ما در تلاشیم تا در سریع‌ترین زمان ممکن مرتبط‌ترین فرصت‌های شغلی را برای شما بیابیم.</p>
+        <div class="thin-divider"></div>
+        <p class="promise">منتظر تماس و ارتباط ما باشید.<br>ما در تلاشیم تا در سریع‌ترین زمان ممکن مرتبط‌ترین فرصت‌های شغلی را برای شما بیابیم.</p>
       </div>
     </div>
       </div>
@@ -391,6 +495,12 @@ const SHEET_URL = "https://script.google.com/macros/s/AKfycbxEyrZ2f8mNJO3AzUkTZ4
 // ---- form ----
 const form = document.getElementById('regForm');
 const submitBtn = document.getElementById('submitBtn');
+
+document.querySelectorAll('.lang-row select').forEach(sel => {
+  sel.addEventListener('change', () => {
+    sel.closest('.lang-row').classList.toggle('filled', sel.value !== '');
+  });
+});
 
 document.querySelectorAll('.choice input[type=radio]').forEach(inp => {
   inp.addEventListener('change', () => {
@@ -439,6 +549,13 @@ form.addEventListener('submit', async (e) => {
   const telegram = document.getElementById('telegram').value.trim();
   const education = document.getElementById('education').value.trim();
   const specialty = document.getElementById('specialty').value.trim();
+
+  const langParts = [];
+  document.querySelectorAll('.lang-row select').forEach(sel => {
+    if(sel.value) langParts.push(`${sel.dataset.lang}: ${sel.value}`);
+  });
+  const languages = langParts.join('، ');
+
   const workType = document.querySelector('input[name="workType"]:checked');
   const passport = document.querySelector('input[name="passport"]:checked');
 
@@ -451,6 +568,7 @@ form.addEventListener('submit', async (e) => {
     telegram: telegram.length > 1,
     education: education.length > 0,
     specialty: specialty.length > 0,
+    languages: langParts.length > 0,
     workType: !!workType,
     passport: !!passport
   };
@@ -470,7 +588,7 @@ form.addEventListener('submit', async (e) => {
 
   const code = 'OMN-' + Math.random().toString(36).slice(2,7).toUpperCase();
   const entry = {
-    fullName, age, location, phone, telegram, education, specialty,
+    fullName, age, location, phone, telegram, education, specialty, languages,
     workType: workType.value, passport: passport.value, code
   };
 
